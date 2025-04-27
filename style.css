@@ -123,3 +123,23 @@ form input {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.loader {
+  border: 8px solid gray;
+  width: 100px;
+  margin: 45px auto;
+  height: 100px;
+  border-radius: 50%;
+  border-right-color: blue;
+  animation: round 0.8s infinite linear;
+  display: none;
+}
+
+@keyframes round {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

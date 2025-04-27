@@ -1,17 +1,24 @@
 const results = document.querySelector("#results");
-const loadBtn=document.querySelector("#loadBtn")
+const loadBtn = document.querySelector("#loadBtn");
+const loading = document.querySelector(".loader");
 
 const API_KEY = "https://pokeapi.co/api/v2/pokemon";
 const API_TYPE = " https://pokeapi.co/api/v2/type/?limit=21";
 
-let offset=0
-const limit=20
+let offset = 0;
+const limit = 20;
+
+loading.style.display = "block";
+loadBtn.style.display = "none";
 
 async function getData() {
   const response = await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`);
   const result = await response.json();
   // console.log(result.results);
   displayData(result.results);
+  loading.style.display = "none";
+loadBtn.style.display = "block";
+
 }
 getData();
 
@@ -23,7 +30,7 @@ async function displayData(obj) {
 
     const imgDiv = document.createElement("img");
     imgDiv.src = reslt.sprites.other.dream_world.front_default;
-    
+
     const flip_card_front = document.createElement("div");
     flip_card_front.className = "flip-card-front";
 
@@ -35,7 +42,6 @@ async function displayData(obj) {
 
     const flip_card = document.createElement("div");
     flip_card.className = "flip-card";
-
 
     // console.log(reslt);
     //   console.log(item.url);
@@ -90,15 +96,15 @@ async function displayData(obj) {
   }
 }
 
-loadBtn.addEventListener("click",moreLoadPokemon)
+loadBtn.addEventListener("click", moreLoadPokemon);
 
+async function moreLoadPokemon() {
+  loading.style.display = "block";
 
-async function moreLoadPokemon(){
-  offset+=limit
-  const response=await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`)
-  const result=await response.json()
+  offset += limit;
+  const response = await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`);
+  const result = await response.json();
   // console.log(result.results);
-  displayData(result.results)
-
+  displayData(result.results);
+  loading.style.display = "none";
 }
-
