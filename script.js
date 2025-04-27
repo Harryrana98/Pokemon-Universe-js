@@ -17,8 +17,7 @@ async function getData() {
   // console.log(result.results);
   displayData(result.results);
   loading.style.display = "none";
-loadBtn.style.display = "block";
-
+  loadBtn.style.display = "block";
 }
 getData();
 
@@ -46,13 +45,11 @@ async function displayData(obj) {
     // console.log(reslt);
     //   console.log(item.url);
 
-    // front content
     const name = document.createElement("p");
     name.innerText = reslt.name;
     const type = document.createElement("p");
     type.innerHTML = `<b>Type:</b> ${reslt.types[0].type.name}`;
 
-    // back side content
     const height = document.createElement("p");
     height.innerHTML = `Height : ${reslt.height}`;
 
