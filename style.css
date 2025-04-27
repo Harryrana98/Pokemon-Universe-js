@@ -1,0 +1,125 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+#wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+form h1 {
+  margin: 20px 0;
+  text-shadow: 3px 3px 6px;
+  font-weight: 800;
+  font-size: 40px;
+}
+
+form select {
+  width: 200px;
+  padding: 8px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 0 4px;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+
+form input {
+  width: 200px;
+  border: none;
+  padding: 8px;
+  font-weight: 600;
+  box-shadow: 0 0 4px;
+  border-radius: 2px;
+}
+
+#results {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 20px 40px; */
+  flex-wrap: wrap;
+}
+
+.flip-card img {
+  width: 100%;
+  object-fit: contain;
+  height: 250px;
+}
+
+.flip-card p {
+  text-transform: capitalize;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 235px;
+  height: 315px;
+  margin-top: 20px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  box-shadow: 0 0 10px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  text-align: start;
+  padding: 2rem 2rem;
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.flip-card-back p {
+  padding-top: 10px;
+}
+
+.loadDiv {
+  display: flex;
+  justify-content: right;
+  margin: 30px 20px;
+}
+#loadBtn {
+  padding: 10px 20px;
+  border: none;
+  background-color: green;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
