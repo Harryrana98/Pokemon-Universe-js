@@ -150,6 +150,7 @@ select.addEventListener("change", async function () {
     const heading=document.createElement("h1")
     heading.innerHTML="This type does not exist or no Pokémon found for this type!"
     results.append(heading)
+    loadBtn.style.display = "none";
     // alert("This type does not exist or no Pokémon found for this type!")
   }else{
 
@@ -159,7 +160,6 @@ select.addEventListener("change", async function () {
   }
 
 
-  loadBtn.style.display = "none";
 });
 
 searchInput.addEventListener("input", (e) => {

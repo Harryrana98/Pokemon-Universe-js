@@ -39,10 +39,11 @@ form input {
 }
 
 #results {
+
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* padding: 20px 40px; */
+  padding: 20px 30px;
   flex-wrap: wrap;
 }
 
@@ -58,8 +59,8 @@ form input {
 
 .flip-card {
   background-color: transparent;
-  width: 235px;
-  height: 315px;
+  width:18%;
+  height: 310px;
   margin-top: 20px;
   perspective: 1000px;
   /* Remove this if you don't want the 3D effect */
