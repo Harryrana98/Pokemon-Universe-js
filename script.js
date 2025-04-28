@@ -133,7 +133,8 @@ getTypes();
 select.addEventListener("change", async function () {
   const selectedType = this.value;
   results.innerHTML = "";
-
+  
+  // selectedType.innerHTML=""
   if (selectedType === "") {
     allPokemon.forEach((pokemon) => {
       createCard(pokemon);
@@ -145,24 +146,31 @@ select.addEventListener("change", async function () {
     pokemon.types.some((t) => t.type.name === selectedType)
   );
 
-  filteredPokemons.forEach((pokemon) => {
-    createCard(pokemon);
-  });
+  if(filteredPokemons.length===0){
+    const heading=document.createElement("h1")
+    heading.innerHTML="This type does not exist or no Pokémon found for this type!"
+    results.append(heading)
+    // alert("This type does not exist or no Pokémon found for this type!")
+  }else{
+
+    filteredPokemons.forEach((pokemon) => {
+      createCard(pokemon);
+    });
+  }
+
 
   loadBtn.style.display = "none";
-  
 });
 
-
-searchInput.addEventListener("input",(e)=>{
-  const searchValue=e.target.value.toLowerCase()
-  results.innerHTML=""
-  let searchPoke=allPokemon.filter(pokemon=> pokemon.name.toLowerCase().includes(searchValue))
-  searchPoke.forEach(pokemon=>{
-
-    createCard(pokemon)
-  })
+searchInput.addEventListener("input", (e) => {
+  const searchValue = e.target.value.toLowerCase();
+  results.innerHTML = "";
+  let searchPoke = allPokemon.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchValue)
+  );
+  searchPoke.forEach((pokemon) => {
+    createCard(pokemon);
+  });
   loadBtn.style.display = searchValue ? "none" : "block";
   console.log(searchPoke);
-  
-})
+});
