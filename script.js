@@ -22,7 +22,6 @@ async function getData() {
 getData();
 
 async function displayData(obj) {
-  // results.innerHTML=""
   for (const item of obj) {
     const res = await fetch(item.url);
     const reslt = await res.json();
