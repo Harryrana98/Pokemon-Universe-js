@@ -17,26 +17,16 @@ loadBtn.style.display = "none";
 async function getData() {
   const response = await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`);
   const result = await response.json();
-  // console.log(result.results);
+
   await displayData(result.results);
 
   loading.style.display = "none";
   loadBtn.style.display = "block";
   loadBtn.disabled = false;
-
-  // displayRandomPokemon(limit);
 }
 getData();
 
 async function displayData(obj) {
-  // for (const item of obj) {
-  //   const res = await fetch(item.url);
-  //   const reslt = await res.json();
-
-  //   allPokemon.push(reslt);
-  //   // createCard(reslt);
-  // }
-
   const promises = obj.map((item) => fetch(item.url).then((res) => res.json()));
   const results = await Promise.all(promises);
   allPokemon.push(...results);
@@ -45,8 +35,6 @@ async function displayData(obj) {
 
   const selected = shuffled.slice(0, 20);
   selected.forEach((pokemon) => createCard(pokemon));
-
-  // results.forEach(pokemon=> createCard(pokemon))
 }
 
 function createCard(reslt) {
@@ -64,9 +52,6 @@ function createCard(reslt) {
 
   const flip_card = document.createElement("div");
   flip_card.className = "flip-card";
-
-  // console.log(reslt);
-  // console.log(item.url);
 
   const name = document.createElement("p");
   name.innerText = reslt.name;
@@ -125,18 +110,15 @@ async function moreLoadPokemon() {
   offset += limit;
   const response = await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`);
   const result = await response.json();
-  // console.log(result.results);
+
   displayData(result.results);
   loading.style.display = "none";
   loadBtn.disabled = false;
-
-  // displayRandomPokemon(limit);
 }
 
 async function getTypes() {
   const response = await fetch(API_TYPE);
   const result = await response.json();
-  // console.log(result);
 
   result.results.forEach((type) => {
     const option = document.createElement("option");
@@ -152,7 +134,6 @@ select.addEventListener("change", async function (e) {
   const selectedType = e.target.value;
   results.innerHTML = "";
 
-  // selectedType.innerHTML=""
   if (selectedType === "") {
     allPokemon.forEach((pokemon) => {
       createCard(pokemon);
@@ -170,7 +151,6 @@ select.addEventListener("change", async function (e) {
       "This type does not exist or no Pokémon found for this type!";
     results.append(heading);
     loadBtn.style.display = "none";
-    // alert("This type does not exist or no Pokémon found for this type!")
   } else {
     filteredPokemons.forEach((pokemon) => {
       createCard(pokemon);
@@ -195,7 +175,4 @@ searchInput.addEventListener("input", (e) => {
   }
   loadBtn.style.display =
     searchPoke.length === 0 || searchValue ? "none" : "block";
-  console.log(searchPoke);
 });
-
-console.log(allPokemon);
