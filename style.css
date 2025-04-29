@@ -13,13 +13,17 @@
 }
 
 form h1 {
-  margin: 20px 0;
+  margin-top: 20px;
   text-shadow: 3px 3px 6px;
   font-weight: 800;
   font-size: 40px;
 }
 
+form {
+  text-align: center;
+}
 form select {
+  margin-top: 20px;
   width: 200px;
   padding: 8px;
   font-weight: 600;
@@ -32,6 +36,7 @@ form select {
 form input {
   width: 200px;
   border: none;
+  margin-top: 20px;
   padding: 8px;
   font-weight: 600;
   box-shadow: 0 0 4px;
@@ -39,12 +44,12 @@ form input {
 }
 
 #results {
-
+  /* width: 79rem; */
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
   padding: 20px 30px;
-  flex-wrap: wrap;
 }
 
 .flip-card img {
@@ -59,7 +64,7 @@ form input {
 
 .flip-card {
   background-color: transparent;
-  width:18%;
+  width: 220px;
   height: 310px;
   margin-top: 20px;
   perspective: 1000px;
