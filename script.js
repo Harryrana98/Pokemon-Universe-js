@@ -18,10 +18,12 @@ async function getData() {
   const response = await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`);
   const result = await response.json();
   // console.log(result.results);
-  displayData(result.results);
+  await displayData(result.results);
   loading.style.display = "none";
   loadBtn.style.display = "block";
   loadBtn.Disabled = false;
+
+  displayRandomPokemon(limit);
 }
 getData();
 
@@ -31,8 +33,16 @@ async function displayData(obj) {
     const reslt = await res.json();
 
     allPokemon.push(reslt);
-    createCard(reslt);
+    // createCard(reslt);
   }
+}
+
+function displayRandomPokemon(count = 20) {
+  const shuffled = [...allPokemon].sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, count);
+
+  // results.innerHTML = ""
+  selected.forEach((pokemon) => createCard(pokemon));
 }
 
 function createCard(reslt) {
@@ -116,7 +126,7 @@ async function moreLoadPokemon() {
   loading.style.display = "none";
   loadBtn.disabled = false;
 
-
+  displayRandomPokemon(limit);
 }
 
 async function getTypes() {
@@ -179,6 +189,9 @@ searchInput.addEventListener("input", (e) => {
       createCard(pokemon);
     });
   }
-  loadBtn.style.display = searchPoke.length===0 || searchValue ? "none" : "block";
+  loadBtn.style.display =
+    searchPoke.length === 0 || searchValue ? "none" : "block";
   console.log(searchPoke);
 });
+
+console.log(allPokemon);
