@@ -105,7 +105,6 @@ function createCard(reslt) {
 loadBtn.addEventListener("click", moreLoadPokemon);
 
 async function moreLoadPokemon() {
-  loadBtn.disabled = true;
   loading.style.display = "block";
   offset += limit;
   const response = await fetch(`${API_KEY}?limit=${limit}&offset=${offset}`);
@@ -113,7 +112,6 @@ async function moreLoadPokemon() {
 
   displayData(result.results);
   loading.style.display = "none";
-  loadBtn.disabled = false;
 }
 
 async function getTypes() {
