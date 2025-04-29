@@ -19,30 +19,35 @@ async function getData() {
   const result = await response.json();
   // console.log(result.results);
   await displayData(result.results);
+
   loading.style.display = "none";
   loadBtn.style.display = "block";
-  loadBtn.Disabled = false;
+  loadBtn.disabled = false;
 
-  displayRandomPokemon(limit);
+  // displayRandomPokemon(limit);
 }
 getData();
 
 async function displayData(obj) {
-  for (const item of obj) {
-    const res = await fetch(item.url);
-    const reslt = await res.json();
+  // for (const item of obj) {
+  //   const res = await fetch(item.url);
+  //   const reslt = await res.json();
 
-    allPokemon.push(reslt);
-    // createCard(reslt);
-  }
-}
+  //   allPokemon.push(reslt);
+  //   // createCard(reslt);
+  // }
 
-function displayRandomPokemon(count = 20) {
-  const shuffled = [...allPokemon].sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, count);
+  const promises= obj.map(item=> fetch(item.url).then(res=>res.json()))
+  const results=await Promise.all(promises)
+  allPokemon.push(...results)
+  
+  const shuffled = [...results].sort(() => 0.5 - Math.random());
+  
+  const selected = shuffled.slice(0, 20);
+  selected.forEach(pokemon => createCard(pokemon));
+ 
+  // results.forEach(pokemon=> createCard(pokemon))
 
-  // results.innerHTML = ""
-  selected.forEach((pokemon) => createCard(pokemon));
 }
 
 function createCard(reslt) {
@@ -126,7 +131,7 @@ async function moreLoadPokemon() {
   loading.style.display = "none";
   loadBtn.disabled = false;
 
-  displayRandomPokemon(limit);
+  // displayRandomPokemon(limit);
 }
 
 async function getTypes() {
