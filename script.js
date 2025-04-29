@@ -148,8 +148,8 @@ async function getTypes() {
 }
 getTypes();
 
-select.addEventListener("change", async function () {
-  const selectedType = this.value;
+select.addEventListener("change", async function (e) {
+  const selectedType = e.target.value;
   results.innerHTML = "";
 
   // selectedType.innerHTML=""
