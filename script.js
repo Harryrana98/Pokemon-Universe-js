@@ -37,17 +37,16 @@ async function displayData(obj) {
   //   // createCard(reslt);
   // }
 
-  const promises= obj.map(item=> fetch(item.url).then(res=>res.json()))
-  const results=await Promise.all(promises)
-  allPokemon.push(...results)
-  
-  const shuffled = [...results].sort(() => 0.5 - Math.random());
-  
-  const selected = shuffled.slice(0, 20);
-  selected.forEach(pokemon => createCard(pokemon));
- 
-  // results.forEach(pokemon=> createCard(pokemon))
+  const promises = obj.map((item) => fetch(item.url).then((res) => res.json()));
+  const results = await Promise.all(promises);
+  allPokemon.push(...results);
 
+  const shuffled = [...results].sort(() => 0.5 - Math.random());
+
+  const selected = shuffled.slice(0, 20);
+  selected.forEach((pokemon) => createCard(pokemon));
+
+  // results.forEach(pokemon=> createCard(pokemon))
 }
 
 function createCard(reslt) {
